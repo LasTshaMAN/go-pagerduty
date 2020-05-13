@@ -185,6 +185,19 @@ func (c *Client) ManageIncidents(from string, incidents []ManageIncidentsOptions
 	return &result, c.decodeJSON(resp, &result)
 }
 
+// ManageIncidents acknowledges, resolves, escalates, or reassigns one or more incidents.
+func (c *Client) ManageIncidentsCustomHeaders(headers map[string]string, incidents []ManageIncidentsOptions) (*ListIncidentsResponse, error) {
+	data := make(map[string][]ManageIncidentsOptions)
+	data["incidents"] = incidents
+
+	resp, err := c.put("/incidents", data, &headers)
+	if err != nil {
+		return nil, err
+	}
+	var result ListIncidentsResponse
+	return &result, c.decodeJSON(resp, &result)
+}
+
 // MergeIncidents a list of source incidents into a specified incident.
 func (c *Client) MergeIncidents(from string, id string, sourceIncidents []MergeIncidentsOptions) (*Incident, error) {
 	r := make(map[string][]MergeIncidentsOptions)
