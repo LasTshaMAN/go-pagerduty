@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
+	"io/ioutil"
 	"net"
 	"net/http"
 	"runtime"
@@ -220,8 +221,14 @@ func (c *Client) checkResponse(resp *http.Response, err error) (*http.Response, 
 
 func (c *Client) getErrorFromResponse(resp *http.Response) (*errorObject, error) {
 	var result map[string]errorObject
-	if err := c.decodeJSON(resp, &result); err != nil {
-		return nil, fmt.Errorf("Could not decode JSON response: %v", err)
+
+	defer resp.Body.Close()
+	respBodyBytes, err := ioutil.ReadAll(resp.Body)
+	if err != nil {
+		return nil, fmt.Errorf("failed reading response body: %w", err)
+	}
+	if err := json.Unmarshal(respBodyBytes, &result); err != nil {
+		return nil, fmt.Errorf("could not decode JSON response, err: %v; raw body: %v", err, string(respBodyBytes))
 	}
 	s, ok := result["error"]
 	if !ok {
