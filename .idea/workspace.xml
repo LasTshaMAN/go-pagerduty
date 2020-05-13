@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8aaeefe9-1718-4b9b-9be9-d833e528c042" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/incident.go" beforeDir="false" afterPath="$PROJECT_DIR$/incident.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -41,5 +42,11 @@
   </component>
   <component name="VgoProject">
     <integration-enabled>true</integration-enabled>
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="710" y="191" width="1152" height="1090" key="find.popup" timestamp="1589391350304">
+      <screen x="0" y="34" width="2560" height="1406" />
+    </state>
+    <state x="710" y="191" width="1152" height="1090" key="find.popup/0.34.2560.1406@0.34.2560.1406" timestamp="1589391350304" />
   </component>
 </project>

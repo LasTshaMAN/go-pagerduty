@@ -200,7 +200,7 @@ func (c *Client) ManageIncidentsCustomHeaders(headers map[string]string, inciden
 
 // UnAcknowledgeIncidentCustomHeaders un-acknowledges the incident.
 func (c *Client) UnAcknowledgeIncidentCustomHeaders(headers map[string]string, id string) (*Incident, error) {
-	resp, err := c.post("/incidents/"+id+"/unacknowledge", nil, &headers)
+	resp, err := c.post("/incidents/"+id+"/unacknowledge", `{}`, &headers)
 	if err != nil {
 		return nil, err
 	}
