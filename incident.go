@@ -198,6 +198,16 @@ func (c *Client) ManageIncidentsCustomHeaders(headers map[string]string, inciden
 	return &result, c.decodeJSON(resp, &result)
 }
 
+// UnAcknowledgeIncidentCustomHeaders un-acknowledges the incident.
+func (c *Client) UnAcknowledgeIncidentCustomHeaders(headers map[string]string, id string) (*Incident, error) {
+	resp, err := c.post("/incidents/"+id+"/unacknowledge", nil, &headers)
+	if err != nil {
+		return nil, err
+	}
+	var result Incident
+	return &result, c.decodeJSON(resp, &result)
+}
+
 // MergeIncidents a list of source incidents into a specified incident.
 func (c *Client) MergeIncidents(from string, id string, sourceIncidents []MergeIncidentsOptions) (*Incident, error) {
 	r := make(map[string][]MergeIncidentsOptions)
